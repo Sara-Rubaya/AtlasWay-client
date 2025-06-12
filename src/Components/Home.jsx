@@ -6,7 +6,7 @@ const Home = () => {
     return (
         <div className='min-h-screen '>
            
-           <h2 className='text-5xl font-bold text-teal-500 text-center py-10'>Travel Gallery</h2>
+           <h2 className='text-5xl font-bold text-teal-600 text-center py-10'>Travel Gallery</h2>
             <Banner></Banner>
             
                 
