@@ -21,6 +21,11 @@ const Footer = () => {
     <a className="link link-hover">Marketing</a>
     <a className="link link-hover">Advertisement</a>
   </nav>
+    <nav>
+      <h6 className="footer-title">Contact us</h6>
+     <a className="link link-hover">info@atlasway.com</a>
+     <a className="link link-hover">+880 1800110011</a>
+  </nav>
    <nav>
     <h6 className="footer-title">Social</h6>
     <div className="grid grid-flow-col gap-4">
@@ -59,12 +64,13 @@ const Footer = () => {
       </a>
     </div>
   </nav>
+
   
   
   
 </footer>
  <div className='footer sm:footer-horizontal footer-center bg-base-200 text-base-content pb-5'>
-<p>Copyright © {new Date().getFullYear()} - All right reserved by AtlasWay</p>
+<p>Copyright © {new Date().getFullYear()} - All right reserved by AtlasWay Ltd.</p>
    </div>
     </div>
 

@@ -1,9 +1,17 @@
 import React from 'react';
+import Banner from './Banner/Banner';
+
 
 const Home = () => {
     return (
-        <div>
-            this is home
+        <div className='min-h-screen '>
+           
+           <h2 className='text-5xl font-bold text-teal-500 text-center py-10'>Travel Gallery</h2>
+            <Banner></Banner>
+            
+                
+            
+           
         </div>
     );
 };
