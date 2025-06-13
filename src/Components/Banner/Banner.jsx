@@ -53,7 +53,7 @@ const Banner = () => {
     </Swiper>
   </section>
 
-  <div className="card bg-base-300  text-black w-full">
+  <div className="card bg-base-300  w-full">
     <div className="card-body">
       <h2 className="card-title">"Adventure Awaits. Discover Your Next Journey Today."</h2>
       <p>Find the perfect tour package and explore the world your way — simple, secure, and unforgettable.</p>

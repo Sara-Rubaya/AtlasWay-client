@@ -8,7 +8,7 @@ import HowItWorks from './HowItWorks';
 
 const Home = () => {
     return (
-        <div className='min-h-screen '>
+        <div className='min-h-screen max-w-7xl mx-auto' >
            
            <h2 className='text-5xl font-bold text-teal-600 text-center py-10'>Travel Gallery</h2>
             <Banner></Banner>

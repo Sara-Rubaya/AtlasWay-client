@@ -9,7 +9,7 @@ const FeaturedDestinations = () => {
 
   return (
     <section className="py-12">
-      <div className="max-w-5xl mx-auto px-4 text-center">
+      <div className="max-w-6xl mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold text-teal-600 mb-6">Featured Destinations</h2>
         <div className="grid gap-6 md:grid-cols-3">
           {destinations.map((dest, idx) => (

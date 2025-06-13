@@ -66,7 +66,7 @@ const Register = () => {
 
 
     return (
-        <div className='flex  gap-8  items-center justify-center h-2/3 my-18 bg-base-100'>
+        <div className='flex  gap-8  items-center justify-center h-2/3 my-18 '>
             <Lottie className='w-80' animationData={ registerLottie} loop={true}></Lottie>
       <div className="card w-full max-w-sm shadow-2xl bg-base-100 mt-6">
         
@@ -98,3 +98,5 @@ const Register = () => {
 };
 
 export default Register;
+
+
