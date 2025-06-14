@@ -13,6 +13,7 @@ import MyBookings from "../Pages/MyBookings";
 import AllPackages from "../Pages/AllPackages";
 import About from "../Pages/About";
 import ErrorPage from "../Pages/ErrorPage";
+import axios from "axios";
 
 
 const router = createBrowserRouter([
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
    children:[
     {
         index:true,
+        loader:() => axios(`${import.meta.env.VITE_API_URL}/packages`),
         Component:Home
     },
     {
