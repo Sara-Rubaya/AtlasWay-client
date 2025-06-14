@@ -1,9 +1,14 @@
 import React, { useContext, useState } from 'react';
 
-import { toast } from 'react-hot-toast';
+
 import { AuthContext } from '../Context/AuthContext';
+import axios from 'axios';
+import { useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 const AddPackage = () => {
+const navigate = useNavigate()
+
   const { user } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
@@ -29,43 +34,37 @@ const AddPackage = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const packageData = {
-      ...formData,
-      guideName: user?.displayName,
-      guidePhoto: user?.photoURL,
-      guideEmail: user?.email,
-    };
+    
+    const form = e.target
+    const formData = new FormData(form)
+    const newPackage = Object.fromEntries(formData.entries())
+    newPackage.email = user?.email
+    newPackage.name =  user?.displayName;
+    newPackage.photo = user?.photoURL
 
-    try {
-      const res = await fetch('https://your-backend-url.com/tourPackages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(packageData),
-      });
+    //save package data
+    axios.post(`${import.meta.env.VITE_API_URL}/add-package`,newPackage)
+    .then(data => {
+      console.log(data)
+      Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Your package has been saved",
+  showConfirmButton: false,
+  timer: 1500
+});
+navigate('/')
+    }).catch(err =>{
+      console.log(err)
+      Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "Something went wrong!",
+  footer: '<a href="#">Why do I have this issue?</a>'
+});
+    })
 
-      const result = await res.json();
-      if (result.insertedId) {
-        toast.success('Package added successfully!');
-        setFormData({
-          tourName: '',
-          image: '',
-          duration: '',
-          departureLocation: '',
-          destination: '',
-          price: '',
-          departureDate: '',
-          packageDetails: '',
-          contactNo: '',
-        });
-      } else {
-        toast.error('Failed to add package');
-      }
-    } catch (err) {
-      toast.error('Something went wrong');
-      console.error(err);
-    }
+    
   };
 
   return (
@@ -144,33 +143,9 @@ const AddPackage = () => {
             className="input input-bordered w-full"
             required
           />
-          <input
-            type="text"
-            name="guideName"
-            value={formData.contactNo}
-            onChange={handleChange}
-            placeholder="Guide Name"
-            className="input input-bordered w-full"
-            required
-          />
-          <input
-            type="text"
-            name="guidePhoto"
-            value={formData.contactNo}
-            onChange={handleChange}
-            placeholder="Guide Photo"
-            className="input input-bordered w-full"
-            required
-          />
-          <input
-            type="email"
-            name="guideEmail"
-            value={formData.contactNo}
-            onChange={handleChange}
-            placeholder="Guide Email"
-            className="input input-bordered w-full"
-            required
-          />
+         
+         
+        
         </div>
         <textarea
           name="packageDetails"
