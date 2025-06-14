@@ -12,6 +12,7 @@ import MyPackages from "../Pages/MyPackages";
 import MyBookings from "../Pages/MyBookings";
 import AllPackages from "../Pages/AllPackages";
 import About from "../Pages/About";
+import ErrorPage from "../Pages/ErrorPage";
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
     {
       path:'/about',
       Component: About
+    },
+    {
+       path: '/*',
+       Component:ErrorPage
     },
     {
       path: '/add-package',
