@@ -86,7 +86,7 @@ useEffect(() => {
             <Link className='hover:bg-teal-700' to="/add-package">Add Package</Link>
           </li>
           <li>
-            <Link className='hover:bg-teal-700' to="/my-packages">Manage My Packages</Link>
+            <Link className='hover:bg-teal-700' to={`/my-packages/${user?.email}`}>Manage My Packages</Link>
           </li>
           <li>
             <button className='hover:bg-teal-700' onClick={logOut}>Logout</button>

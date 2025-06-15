@@ -63,8 +63,8 @@ const router = createBrowserRouter(
           ),
         },
         {
-          path: '/my-packages',
-          loader: () => axios(`${import.meta.env.VITE_API_URL}/packages`),
+          path: '/my-packages/:email',
+          loader: ({params}) => axios(`${import.meta.env.VITE_API_URL}/my-packages/${params.email}`),
           element: (
             <PrivateRoute>
               <MyPackages />
