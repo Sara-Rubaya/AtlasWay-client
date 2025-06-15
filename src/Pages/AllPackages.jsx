@@ -1,9 +1,13 @@
 import { useState } from 'react';
+import { useLoaderData } from 'react-router';
+import PackageCard from '../Components/PackageCard';
 
 
 
 const AllPackages = () => {
-   
+   const data = useLoaderData()
+    const [packages, setPackages] = useState(data?.data || [])
+    console.log(data.data)
   
     
   
@@ -28,6 +32,15 @@ const AllPackages = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
+
+       <h1 className='text-4xl text-teal-700 font-bold text-center py-10'>Featured Packages</h1>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-6 py-12'>
+                {
+                    packages.map(pkg => (
+                        <PackageCard key={pkg._id} package={pkg}></PackageCard>
+                    ))
+                }
+            </div>
 
      
     </div>

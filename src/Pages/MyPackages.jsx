@@ -1,88 +1,73 @@
-import React, { useContext, useEffect, useState } from 'react';
-
-
+import React, { useState, useContext } from 'react';
 import Swal from 'sweetalert2';
-import toast from 'react-hot-toast';
 import { AuthContext } from '../Context/AuthContext';
-import { Link } from 'react-router';
+
+import { FaEdit, FaTrash } from 'react-icons/fa';
+import { Link, useLoaderData, useNavigate } from 'react-router';
 
 const ManagePackages = () => {
+  const data = useLoaderData();
+  const [packages, setPackages] = useState(data?.data || []);
   const { user } = useContext(AuthContext);
-  const [myPackages, setMyPackages] = useState([]);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch(`https://your-backend.com/tourPackages?guideEmail=${user?.email}`)
-      .then(res => res.json())
-      .then(data => setMyPackages(data));
-  }, [user]);
-
-  const handleDelete = (id) => {
-    Swal.fire({
+  const handleDelete = async (id) => {
+    const result = await Swal.fire({
       title: 'Are you sure?',
-      text: "You are about to delete this package!",
+      text: 'You won\'t be able to revert this!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`https://your-backend.com/tourPackages/${id}`, {
-          method: 'DELETE'
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.deletedCount > 0) {
-              toast.success("Package deleted successfully!");
-              setMyPackages(myPackages.filter(pkg => pkg._id !== id));
-            }
-          });
-      }
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
     });
+
+    if (result.isConfirmed) {
+      try {
+        const res = await fetch(`https://your-api.com/packages/${id}`, {
+          method: 'DELETE',
+        });
+        const json = await res.json();
+        if (json.success) {
+          Swal.fire('Deleted!', 'Your package has been deleted.', 'success');
+          setPackages(packages.filter(pkg => pkg._id !== id));
+        }
+      } catch (err) {
+        Swal.fire('Error!', 'Something went wrong.', err);
+      }
+    }
   };
 
-  return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
-      <h2 className="text-3xl font-bold text-primary text-center mb-8">Manage My Packages</h2>
+  const handleEdit = (id) => {
+    navigate(`/update-package/${id}`);
+  };
 
-      {myPackages.length === 0 ? (
-        <p className="text-center text-gray-500">You haven't added any packages yet.</p>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="table bg-base-100 shadow w-full">
-            <thead>
-              <tr className="bg-base-200 text-center">
-                <th>#</th>
-                <th>Tour Name</th>
-                <th>Duration</th>
-                <th>Price</th>
-                <th>Departure</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {myPackages.map((pkg, idx) => (
-                <tr key={pkg._id} className="text-center">
-                  <td>{idx + 1}</td>
-                  <td>{pkg.tourName}</td>
-                  <td>{pkg.duration}</td>
-                  <td>${pkg.price}</td>
-                  <td>{pkg.departureLocation} <br /> {pkg.departureDate}</td>
-                  <td className="space-x-2">
-                    <Link to={`/update-package/${pkg._id}`} className="btn btn-xs btn-outline btn-warning">
-                      Edit
-                    </Link>
-                    <button
-                      onClick={() => handleDelete(pkg._id)}
-                      className="btn btn-xs btn-outline btn-error"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+  const myPackages = packages.filter(pkg => pkg?.email === user?.email);
+
+  return (
+    <div className='m-10'>
+      <h1 className='text-4xl text-teal-700 font-bold text-center py-10'>Manage My Packages</h1>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-12'>
+        {
+          myPackages.map(pkg => (
+            <div key={pkg._id} className='relative  rounded shadow p-4'>
+              <img src={pkg.image} alt={pkg.tourName} className='w-full h-48 object-cover rounded' />
+              <h3 className='text-xl font-bold mt-4'>{pkg.tourName}</h3>
+              <p className='text-sm text-gray-600'>৳ {pkg.price}</p>
+              <div className='flex justify-between mt-4'>
+                <button onClick={() => handleEdit(pkg._id)} className='btn btn-sm btn-outline text-blue-600 flex items-center gap-1'>
+                  <FaEdit /> Edit
+                </button>
+                <button onClick={() => handleDelete(pkg._id)} className='btn btn-sm btn-outline text-red-600 flex items-center gap-1'>
+                  <FaTrash /> Delete
+                </button>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+    
     </div>
   );
 };
