@@ -1,12 +1,78 @@
-# React + Vite
+# AtlasWay 🌍✨  
+A full-featured **Tour Package Booking Management Platform** built with the **MERN Stack** and **Firebase Authentication**.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 🌟 Project Purpose
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+AtlasWay is a responsive web application designed to streamline the travel booking experience. It allows users to explore available travel packages, securely book their preferred tours, and manage their reservations. Admins or providers can view and manage bookings, while users can confirm or cancel them.
 
-## Expanding the ESLint configuration
+This project was developed as part of a full-stack development course assignment.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Live URL
+
+🔗 [Visit AtlasWay Live](https://your-live-site-url.com)  
+*(Replace with your actual deployment URL after going live)*
+
+---
+
+## ✨ Key Features
+
+- 🔐 **Firebase Authentication**
+  - Email/password login
+  - Google Sign-in
+- 📦 **Tour Package Management**
+  - View all packages
+  - View individual tour details
+  - Add new tour (admin only)
+- 📑 **Booking System**
+  - Book a tour with a special note
+  - View all your bookings
+  - Status system: `pending` ➝ `completed`
+- 🔒 **Private/Protected Routes**
+  - Restricted access to booking pages for authenticated users only
+- 💬 **SweetAlert2**
+  - Friendly success/error alert messages
+- 📱 **Mobile Responsive**
+  - Fully responsive UI built with Tailwind CSS and DaisyUI
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React**
+- **React Router DOM**
+- **Tailwind CSS**
+- **DaisyUI**
+- **Firebase (Auth)**
+- **Axios**
+
+### Backend
+- **Node.js**
+- **Express.js**
+- **MongoDB (Atlas)**
+
+---
+
+## 📦 NPM Packages Used
+
+### Frontend
+- `react` – Core UI library
+- `react-router-dom` – Routing
+- `axios` – HTTP requests
+- `firebase` – Authentication
+- `sweetalert2` – Alert modals
+- `daisyui` – Tailwind UI components
+
+### Backend
+- `express` – Backend framework
+- `cors` – Enable CORS
+- `dotenv` – Environment variable manager
+- `mongodb` – Database access (MongoDB native driver)
+
+
+
+
