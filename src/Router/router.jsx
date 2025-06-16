@@ -15,6 +15,7 @@ import axios from "axios";
 import LoadingSpinner from "../Components/LoadingSpinner"; 
 import { createBrowserRouter } from "react-router";
 
+
 const router = createBrowserRouter(
   [
     {
@@ -73,6 +74,7 @@ const router = createBrowserRouter(
         },
         {
           path: '/my-bookings',
+          
           element: (
             <PrivateRoute>
               <MyBookings />

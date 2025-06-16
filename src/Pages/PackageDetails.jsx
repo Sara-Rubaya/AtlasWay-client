@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { Link, useLoaderData } from 'react-router';
+import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../Context/AuthContext';
-
+import axios from 'axios';
 
 const PackageDetails = () => {
   const { data: pkg } = useLoaderData();
@@ -31,20 +31,12 @@ const PackageDetails = () => {
     };
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/bookings`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(bookingData)
-      });
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/bookings`, bookingData);
 
-      const result = await res.json();
-
-      setShowModal(false); // Close modal first
+      setShowModal(false);
 
       setTimeout(() => {
-        if (result.success) {
+        if (res.data.success) {
           Swal.fire({
             title: 'Booked!',
             text: 'Your tour package has been booked successfully!',
@@ -54,7 +46,7 @@ const PackageDetails = () => {
         } else {
           Swal.fire({
             title: 'Error!',
-            text: result.message || 'Something went wrong!',
+            text: res.data.message || 'Something went wrong!',
             icon: 'error',
             confirmButtonText: 'Try Again'
           });
@@ -96,15 +88,20 @@ const PackageDetails = () => {
             <p className="text-sm text-gray-500">Guide's Email: {email}</p>
             <p className="text-sm text-gray-500">Guide's Phone: {contactNo}</p>
             <p className="text-lg font-semibold text-teal-600">৳ {price}</p>
+
             <div className="card-actions justify-end mt-2">
-             <Link >
               <button
-                onClick={() => setShowModal(true)}
+                onClick={() => {
+                  if (!user) {
+                    window.location.href = '/login';
+                  } else {
+                    setShowModal(true);
+                  }
+                }}
                 className="text-gray-900 bg-gradient-to-r from-teal-600 to-lime-500 hover:bg-gradient-to-l hover:from-teal-600 hover:to-lime-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-full"
               >
                 Book Now
               </button>
-             </Link>
             </div>
           </div>
         </div>
