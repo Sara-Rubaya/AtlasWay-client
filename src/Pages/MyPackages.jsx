@@ -10,66 +10,102 @@ const ManagePackages = () => {
   const { user } = useContext(AuthContext);
   const [selectedPackage, setSelectedPackage] = useState(null);
 
-  const handleDelete = async (id) => {
-    const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: 'You won\'t be able to revert this!',
-      icon: 'warning',
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    });
-
-    if (result.isConfirmed) {
-      try {
-        const res = await fetch(`https://your-api.com/packages/${id}`, {
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`${import.meta.env.VITE_API_URL}/packages/${id}`, {
           method: 'DELETE',
-        });
-        const json = await res.json();
-        if (json.success) {
-          Swal.fire('Deleted!', 'Your package has been deleted.', 'success');
-          setPackages(packages.filter(pkg => pkg._id !== id));
-        }
-      } catch (err) {
-        Swal.fire('Error!', 'Something went wrong.', err);
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.deletedCount) {
+              const remainingPackages = packages.filter(pkg => pkg._id !== id);
+              setPackages(remainingPackages);
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your user has been deleted.",
+                icon: "success"
+              });
+            }
+          });
       }
-    }
+    });
   };
 
-  const handleEdit = (pkg) => {
+  const openEditModal = (pkg) => {
     setSelectedPackage(pkg);
     document.getElementById('edit_modal').showModal();
   };
 
-  const myPackages = packages.filter(pkg => pkg?.email === user?.email);
+  const handleEditSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const updatedPackage = Object.fromEntries(formData.entries());
+
+    fetch(`${import.meta.env.VITE_API_URL}/packages/${selectedPackage._id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': "application/json"
+      },
+      body: JSON.stringify(updatedPackage)
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.modifiedCount) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Package updated successfully.",
+            showConfirmButton: false,
+            timer: 1500
+          });
+
+          const updatedList = packages.map(pkg =>
+            pkg._id === selectedPackage._id ? { ...pkg, ...updatedPackage } : pkg
+          );
+          setPackages(updatedList);
+          document.getElementById('edit_modal').close();
+        }
+      });
+  };
 
   return (
     <div className='m-10'>
       <h1 className='text-4xl text-teal-700 font-bold text-center py-10'>Manage My Packages</h1>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-12'>
         {
-          myPackages.map(pkg => (
-            <div key={pkg._id} className='relative rounded shadow p-4'>
-              <img src={pkg.image} alt={pkg.tourName} className='w-full h-48 object-cover rounded' />
-              <h3 className='text-xl font-bold mt-4'>{pkg.tourName}</h3>
-              <p className='text-sm text-gray-600'>৳ {pkg.price}</p>
-              <div className='flex justify-between mt-4'>
-                <button
-                  onClick={() => handleEdit(pkg)}
-                  className='btn btn-sm btn-outline text-blue-600 flex items-center gap-1'
-                >
-                  <FaEdit /> Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(pkg._id)}
-                  className='btn btn-sm btn-outline text-red-600 flex items-center gap-1'
-                >
-                  <FaTrash /> Delete
-                </button>
+          packages
+            .filter(pkg => pkg?.email === user?.email)
+            .map(pkg => (
+              <div key={pkg._id} className='relative rounded shadow p-4'>
+                <img src={pkg.image} alt={pkg.tourName} className='w-full h-48 object-cover rounded' />
+                <h3 className='text-xl font-bold mt-4'>{pkg.tourName}</h3>
+                <p className='text-sm text-gray-600'>৳ {pkg.price}</p>
+                <div className='flex justify-between mt-4'>
+                  <button
+                    onClick={() => openEditModal(pkg)}
+                    className='btn btn-sm btn-outline text-blue-600 flex items-center gap-1'
+                  >
+                    <FaEdit /> Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(pkg._id)}
+                    className='btn btn-sm btn-outline text-red-600 flex items-center gap-1'
+                  >
+                    <FaTrash /> Delete
+                  </button>
+                </div>
               </div>
-            </div>
-          ))
+            ))
         }
       </div>
 
@@ -80,26 +116,21 @@ const ManagePackages = () => {
           <form
             method="dialog"
             className="space-y-3"
-            onSubmit={(e) => {
-              e.preventDefault();
-              // Optional: handle update logic here
-              Swal.fire('Updated!', 'Package info has been updated.', 'success');
-              document.getElementById('edit_modal').close();
-            }}
+            onSubmit={handleEditSubmit}
           >
-            <input type="text" placeholder="Tour Name" className="input input-bordered w-full"
+            <input name="tourName" type="text" placeholder="Tour Name" className="input input-bordered w-full"
               defaultValue={selectedPackage?.tourName} />
-            <input type="text" placeholder="Image URL" className="input input-bordered w-full"
+            <input name="image" type="text" placeholder="Image URL" className="input input-bordered w-full"
               defaultValue={selectedPackage?.image} />
-            <input type="text" placeholder="Duration" className="input input-bordered w-full"
+            <input name="duration" type="text" placeholder="Duration" className="input input-bordered w-full"
               defaultValue={selectedPackage?.duration} />
-            <input type="number" placeholder="Price" className="input input-bordered w-full"
+            <input name="price" type="number" placeholder="Price" className="input input-bordered w-full"
               defaultValue={selectedPackage?.price} />
-            <input type="date" className="input input-bordered w-full"
+            <input name="departureDate" type="date" className="input input-bordered w-full"
               defaultValue={selectedPackage?.departureDate?.slice(0, 10)} />
-            <textarea className="textarea textarea-bordered w-full" placeholder="Package Details">
-              {selectedPackage?.packageDetails}
-            </textarea>
+            <textarea name="packageDetails" className="textarea textarea-bordered w-full" placeholder="Package Details"
+              defaultValue={selectedPackage?.packageDetails}
+            ></textarea>
             <div className="modal-action">
               <button type="submit" className="btn bg-teal-700 text-white">Update</button>
               <button type="button" className="btn" onClick={() => document.getElementById('edit_modal').close()}>Cancel</button>

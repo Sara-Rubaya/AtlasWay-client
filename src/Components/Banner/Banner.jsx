@@ -12,40 +12,40 @@ const Banner = () => {
       modules={[Autoplay]}
       spaceBetween={30}
       slidesPerView={1}
-      autoplay={{ delay: 3000 }}
+      autoplay={{ delay: 2000 }}
       loop
     >
       <SwiperSlide>
         <img
-          src="https://i.ibb.co/tMgLLRM9/sylhet.jpg"
+          src="https://i.ibb.co/rG4sd0Jr/train-darjeeling1.jpg"
           className="rounded-xl w-full h-[500px] object-cover"
           alt="Slide 1"
         />
       </SwiperSlide>
       <SwiperSlide>
         <img
-          src="https://i.ibb.co/gbvWbmzY/keokadong.jpg"
+          src="https://i.ibb.co/KjPTLt3K/ssiv-general-04.jpg"
           className="rounded-xl w-full h-[500px] object-cover"
           alt="Slide 2"
         />
       </SwiperSlide>
       <SwiperSlide>
         <img
-          src="https://i.ibb.co/27w43yWs/coxs.jpg"
+          src="https://i.ibb.co/DgQSDM6J/c5e391093f86b9b3fe22bc7cc0a9897a-25198-dubai-evening-desert-safari-002.jpg"
           className="rounded-xl w-full h-[500px] object-cover"
           alt="Slide 3"
         />
       </SwiperSlide>
       <SwiperSlide>
         <img
-          src="https://i.ibb.co/NdYYXpqQ/puthia.jpg"
+          src="https://i.ibb.co/Gvsc9j70/120210044639-eiffel-tower.jpg"
           className="rounded-xl w-full h-[500px] object-cover"
           alt="Slide 4"
         />
       </SwiperSlide>
       <SwiperSlide>
         <img
-          src="https://i.ibb.co/n8fKb7Qm/sundarban.jpg"
+          src="https://i.ibb.co/7Njn41WQ/Mount-Everest.jpg"
           className="rounded-xl w-full h-[500px] object-cover"
           alt="Slide 5"
         />

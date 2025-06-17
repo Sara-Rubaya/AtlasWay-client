@@ -9,9 +9,16 @@ const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  console.log('token in the context', user.accessToken)
+
   const fetchBookings = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/bookings?email=${user.email}`);
+      const token = await user.getIdToken();
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/bookings?email=${user.email}`,{
+        headers: {
+        Authorization: `Bearer ${token}`, 
+      },
+      });
       setBookings(res.data || []);
     } catch (err) {
       console.error('Failed to fetch bookings', err);
@@ -30,8 +37,14 @@ const MyBookings = () => {
 
   const handleConfirm = async (id) => {
     try {
+      const token = await user.getIdToken();
       const res = await axios.patch(`${import.meta.env.VITE_API_URL}/bookings/${id}`, {
-        status: 'completed',
+        status: 'completed'
+      },
+     {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       if (res.data.modifiedCount > 0 || res.data.success) {

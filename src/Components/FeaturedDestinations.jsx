@@ -2,9 +2,9 @@ import React from 'react';
 
 const FeaturedDestinations = () => {
   const destinations = [
-    { name: 'Sylhet', img: 'https://i.ibb.co/tMgLLRM9/sylhet.jpg' },
-    { name: 'Puthia', img: 'https://i.ibb.co/NdYYXpqQ/puthia.jpg' },
-    { name: 'Keokradong', img: 'https://i.ibb.co/gbvWbmzY/keokadong.jpg' },
+    { name: 'Dubai', img: 'https://i.ibb.co/DgQSDM6J/c5e391093f86b9b3fe22bc7cc0a9897a-25198-dubai-evening-desert-safari-002.jpg' },
+    { name: 'Darjeeling', img: 'https://i.ibb.co/rG4sd0Jr/train-darjeeling1.jpg' },
+    { name: 'Maldivs', img: 'https://i.ibb.co/KjPTLt3K/ssiv-general-04.jpg' },
   ];
 
   return (
