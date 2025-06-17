@@ -11,6 +11,7 @@ import {
   signOut,
   updateProfile,
 } from 'firebase/auth'
+import axios from 'axios';
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -45,6 +46,17 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser)
+      //post request for JWT using user email
+      if(currentUser?.email){
+        axios.post(`${import.meta.env.VITE_API_URL}/bookings`,{
+          email: currentUser?.email
+        })
+        .then(res =>{
+          localStorage.setItem('token', res.data.token)
+        })
+      }else{
+        localStorage.removeItem('token')
+      }
       setLoading(false)
     })
     return () => {

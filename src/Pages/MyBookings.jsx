@@ -1,24 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+
 import Swal from 'sweetalert2';
 import { AuthContext } from '../Context/AuthContext';
+import useAxiosSecure from '../Hook/UseAxiosSecure';
 
 const MyBookings = () => {
-  
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const axiosSecure = useAxiosSecure()
 
-  console.log('token in the context', user.accessToken)
 
   const fetchBookings = async () => {
     try {
-      const token = await user.getIdToken();
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/bookings?email=${user.email}`,{
-        headers: {
-        Authorization: `Bearer ${token}`, 
-      },
-      });
+      
+      const res = await axiosSecure.get(`/bookings?email=${user.email}`);
+
       setBookings(res.data || []);
     } catch (err) {
       console.error('Failed to fetch bookings', err);
@@ -27,29 +24,24 @@ const MyBookings = () => {
     }
   };
 
-  
-
   useEffect(() => {
     if (user?.email) {
       fetchBookings();
     }
-  }, [user]);
+  }, [user,axiosSecure ]);
 
+ 
   const handleConfirm = async (id) => {
     try {
-      const token = await user.getIdToken();
-      const res = await axios.patch(`${import.meta.env.VITE_API_URL}/bookings/${id}`, {
-        status: 'completed'
-      },
-     {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+       
+      const res = await axiosSecure.patch(
+        `/bookings/${id}`
+        
+      );
 
       if (res.data.modifiedCount > 0 || res.data.success) {
         Swal.fire('Success', 'Booking confirmed!', 'success');
-        fetchBookings(); // Refresh after update
+        fetchBookings(); 
       }
     } catch (error) {
       console.error(error);
@@ -99,15 +91,14 @@ const MyBookings = () => {
                     </span>
                   </td>
                   <td>
-                    {booking.status === 'pending' && (
+                    {booking.status === 'pending' ? (
                       <button
                         onClick={() => handleConfirm(booking._id)}
                         className="btn btn-xs bg-lime-600 text-white"
                       >
                         Confirm
                       </button>
-                    )}
-                    {booking.status === 'completed' && (
+                    ) : (
                       <button className="btn btn-xs btn-disabled">Done</button>
                     )}
                   </td>
