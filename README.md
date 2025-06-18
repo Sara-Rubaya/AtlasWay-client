@@ -13,8 +13,8 @@ This project was developed as part of a full-stack development course assignment
 
 ## 🚀 Live URL
 
-🔗 [Visit AtlasWay Live](https://your-live-site-url.com)  
-*(Replace with your actual deployment URL after going live)*
+🔗 [Visit AtlasWay Live](https://atlasway-client.web.app/)  
+
 
 ---
 
