@@ -19,7 +19,7 @@ const About = () => {
         </p>
 
         <p className=" font-medium mt-6">
-          Start your journey today — with WanderScape, the world is just a click away.
+          Start your journey today — with AtlasWay, the world is just a click away.
         </p>
       </div>
     </div>

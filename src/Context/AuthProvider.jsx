@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
       //post request for JWT using user email
       if(currentUser?.email){
         axios.post(`${import.meta.env.VITE_API_URL}/bookings`,{
-          email: currentUser?.email
+          email: currentUser?.email,
         })
         .then(res =>{
           localStorage.setItem('token', res.data.token)
