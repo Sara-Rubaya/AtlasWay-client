@@ -6,6 +6,7 @@ import Testimonials from './HowItWorks';
 import HowItWorks from './HowItWorks';
 import { useLoaderData, Link } from 'react-router';
 import PackageCard from './PackageCard';
+import ContactUs from './ContactUs';
 
 const Home = () => {
     const data = useLoaderData()
@@ -36,6 +37,7 @@ const Home = () => {
             <WhyChooseUs></WhyChooseUs>
             <FeaturedDestinations></FeaturedDestinations>
             <HowItWorks></HowItWorks>
+            <ContactUs></ContactUs>
         </div>
     );
 };
