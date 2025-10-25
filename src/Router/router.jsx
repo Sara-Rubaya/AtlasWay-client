@@ -1,4 +1,3 @@
-
 import RootLayout from "../Layouts/RootLayout";
 import Home from "../Components/Home";
 import Register from "../Components/Register";
@@ -13,7 +12,7 @@ import About from "../Pages/About";
 import ErrorPage from "../Pages/ErrorPage";
 import axios from "axios";
 import LoadingSpinner from "../Components/LoadingSpinner"; 
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router";  // ✅ kept as you want
 
 
 const router = createBrowserRouter(
@@ -65,7 +64,8 @@ const router = createBrowserRouter(
         },
         {
           path: '/my-packages/:email',
-          loader: ({params}) => axios(`${import.meta.env.VITE_API_URL}/my-packages/${params.email}`),
+          loader: ({ params }) =>
+            axios(`${import.meta.env.VITE_API_URL}/my-packages/${params.email}`),
           element: (
             <PrivateRoute>
               <MyPackages />
@@ -74,7 +74,6 @@ const router = createBrowserRouter(
         },
         {
           path: '/my-bookings',
-          
           element: (
             <PrivateRoute>
               <MyBookings />
