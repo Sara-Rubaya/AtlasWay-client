@@ -23,15 +23,15 @@ const FeaturedDestinations = () => {
           {destinations.map((dest, idx) => (
             <div
               key={idx}
-              className="card bg-base-100 shadow-lg hover:shadow-md transition rounded-xl overflow-hidden"
+              className="card bg-base-100 shadow-lg rounded-xl overflow-hidden transition transform duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-teal-400/40"
               data-aos="fade-up"
-              data-aos-delay={idx * 100} // staggered animation for each card
+              data-aos-delay={idx * 100} // staggered animation
             >
-              <figure>
+              <figure className="overflow-hidden">
                 <img 
                   src={dest.img} 
                   alt={dest.name} 
-                  className="h-48 w-full object-cover rounded-t-xl" 
+                  className="h-48 w-full object-cover rounded-t-xl transition-transform duration-300 hover:scale-110"
                 />
               </figure>
               

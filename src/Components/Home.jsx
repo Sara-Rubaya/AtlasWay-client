@@ -14,19 +14,24 @@ const Home = () => {
     console.log(data.data)
 
     return (
-        <div className='min-h-screen max-w-7xl mx-auto '>
-            <h2 className='text-5xl font-bold text-teal-600 text-center py-10'>Travel Gallery</h2>
+        <div className='min-h-screen mx-auto '>
+            
             <Banner></Banner>
 
-            <h1 className='text-4xl text-teal-700 font-bold text-center py-10'>Featured Packages</h1>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-6 py-12'>
-                {
-                    packages.slice(0, 6).map(pkg => (
-                        <PackageCard key={pkg._id} package={pkg}></PackageCard>
-                    ))
-                }
-                <div data-aos="fade-up"></div>
-            </div>
+           <section className="py-16">
+  <div className="max-w-7xl mx-auto">
+    <h1 className="text-4xl text-teal-700 font-bold text-center py-10">
+      Featured Packages
+    </h1>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-12">
+      {packages.slice(0, 6).map((pkg) => (
+        <PackageCard key={pkg._id} package={pkg}></PackageCard>
+      ))}
+      <div data-aos="fade-up"></div>
+    </div>
+  </div>
+</section>
 
             
             <div className='text-center mb-15'>

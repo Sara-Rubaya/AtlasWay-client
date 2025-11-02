@@ -14,7 +14,7 @@ const HowItWorks = () => {
         <div className="grid gap-6 md:grid-cols-3">
           {/* Step 1 */}
           <div 
-            className="p-10 rounded-xl shadow-lg hover:shadow-md transition bg-base-100" 
+            className="p-10 rounded-xl shadow-lg bg-base-100 transition transform duration-300 hover:scale-105" 
             data-aos="fade-up" 
             data-aos-delay="100"
           >
@@ -26,7 +26,7 @@ const HowItWorks = () => {
 
           {/* Step 2 */}
           <div 
-            className="p-10 rounded-xl shadow-lg hover:shadow-md transition bg-base-100" 
+            className="p-10 rounded-xl shadow-lg bg-base-100 transition transform duration-300 hover:scale-105" 
             data-aos="fade-up" 
             data-aos-delay="200"
           >
@@ -38,7 +38,7 @@ const HowItWorks = () => {
 
           {/* Step 3 */}
           <div 
-            className="p-10 rounded-xl shadow-lg hover:shadow-md transition bg-base-100" 
+            className="p-10 rounded-xl shadow-lg bg-base-100 transition transform duration-300 hover:scale-105" 
             data-aos="fade-up" 
             data-aos-delay="300"
           >

@@ -23,7 +23,7 @@ const WhyChooseUs = () => {
         {/* Feature Cards */}
         <div className="grid gap-6 md:grid-cols-3">
           <div
-            className="p-14 bg-base-100 rounded-xl shadow-lg hover:shadow-md transition"
+            className="p-14 bg-base-100 rounded-xl shadow-lg hover:shadow-2xl transition transform duration-300 hover:scale-105 hover:shadow-teal-400/40"
             data-aos="fade-up"
             data-aos-delay="150"
           >
@@ -34,7 +34,7 @@ const WhyChooseUs = () => {
           </div>
 
           <div
-            className="p-14 bg-base-100 rounded-xl shadow-lg hover:shadow-md transition"
+            className="p-14 bg-base-100 rounded-xl shadow-lg hover:shadow-2xl transition transform duration-300 hover:scale-105 hover:shadow-teal-400/40"
             data-aos="fade-up"
             data-aos-delay="250"
           >
@@ -45,7 +45,7 @@ const WhyChooseUs = () => {
           </div>
 
           <div
-            className="p-14 bg-base-100 rounded-xl shadow-lg hover:shadow-md transition"
+            className="p-14 bg-base-100 rounded-xl shadow-lg hover:shadow-2xl transition transform duration-300 hover:scale-105 hover:shadow-teal-400/40"
             data-aos="fade-up"
             data-aos-delay="350"
           >
