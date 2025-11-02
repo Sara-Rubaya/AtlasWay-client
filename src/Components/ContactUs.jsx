@@ -3,16 +3,30 @@ import React from 'react';
 const ContactUs = () => {
   return (
     <section className="py-24">
-      {/* WhyChooseUs সেকশনের মতো একই প্রস্থ ব্যবহার করা হলো */}
       <div className="max-w-7xl mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold mb-4 text-teal-600">Get In Touch</h2>
-        <p className="mb-12 text-lg text-gray-600">
+        {/* Title */}
+        <h2 
+          className="text-4xl font-bold mb-4 text-teal-600"
+          data-aos="fade-up"
+        >
+          Get In Touch
+        </h2>
+
+        <p 
+          className="mb-12 text-lg text-gray-600"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
           We'd love to hear from you! Send us a message or find our contact details below.
         </p>
 
         <div className="grid gap-12 md:grid-cols-2 text-left">
           {/* 📞 Contact Info Card */}
-          <div className="p-10 bg-base-100 rounded-xl shadow-lg">
+          <div 
+            className="p-10 bg-base-100 rounded-xl shadow-lg"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
             <h3 className="text-2xl font-semibold mb-6 text-teal-700">Our Details</h3>
             
             <div className="space-y-4">
@@ -36,13 +50,19 @@ const ContactUs = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5a.75.75 0 0 0-1.5 0v3.75a.75.75 0 0 0 1.5 0v-3.75Zm0 0V8.25m-15 0a.75.75 0 0 0-1.5 0v3.75a.75.75 0 0 0 1.5 0v-3.75Zm0 0V8.25" />
                 </svg>
-                <span className="text-gray-700">123 Travel Avenue, <br />Dhaka, Bangladesh</span>
+                <span className="text-gray-700">
+                  123 Travel Avenue, <br />Dhaka, Bangladesh
+                </span>
               </div>
             </div>
           </div>
 
           {/* 📧 Contact Form */}
-          <div className="p-10 bg-base-100 rounded-xl shadow-lg">
+          <div 
+            className="p-10 bg-base-100 rounded-xl shadow-lg"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
             <h3 className="text-2xl font-semibold mb-6 text-teal-700">Send Us a Message</h3>
             <form className="space-y-4">
               <div>

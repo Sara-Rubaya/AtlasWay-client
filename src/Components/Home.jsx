@@ -25,6 +25,7 @@ const Home = () => {
                         <PackageCard key={pkg._id} package={pkg}></PackageCard>
                     ))
                 }
+                <div data-aos="fade-up"></div>
             </div>
 
             
