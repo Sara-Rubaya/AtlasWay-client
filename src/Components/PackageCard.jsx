@@ -1,5 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router'; 
+import React, { useEffect } from 'react';
+import { Link } from 'react-router';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const PackageCard = ({ package: pkg }) => {
   if (!pkg) return null;
@@ -8,8 +10,13 @@ const PackageCard = ({ package: pkg }) => {
     _id, tourName, image, duration, price, departureDate, name, photo
   } = pkg;
 
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true, easing: 'ease-in-out' });
+  }, []);
+
   return (
     <div
+      data-aos="fade-up"
       className="
         card bg-base-100 rounded-xl overflow-hidden
         shadow-lg transition-all duration-500 transform
@@ -18,7 +25,7 @@ const PackageCard = ({ package: pkg }) => {
         group
       "
     >
-      {/* Image with zoom effect */}
+      {/* Image */}
       <figure className="h-64 overflow-hidden">
         <img
           src={image}

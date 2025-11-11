@@ -7,6 +7,7 @@ import HowItWorks from './HowItWorks';
 import { useLoaderData, Link } from 'react-router';
 import PackageCard from './PackageCard';
 import ContactUs from './ContactUs';
+import SplashCursor from './SplashCursor/SplashCursor';
 
 const Home = () => {
     const data = useLoaderData()
@@ -15,6 +16,8 @@ const Home = () => {
 
     return (
         <div className='min-h-screen mx-auto '>
+          
+          <SplashCursor />
             
             <Banner></Banner>
 
@@ -43,6 +46,11 @@ const Home = () => {
             <WhyChooseUs></WhyChooseUs>
             <FeaturedDestinations></FeaturedDestinations>
             <HowItWorks></HowItWorks>
+
+            
+
+
+
             <ContactUs></ContactUs>
         </div>
     );
