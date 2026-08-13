@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { auth } from '../firebase/firebase.init';
+import { auth } from '../Firebase/Firebase.init.js';
 
 
 
