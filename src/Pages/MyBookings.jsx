@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import Swal from 'sweetalert2';
 import { AuthContext } from '../Context/AuthContext';
-import useAxiosSecure from '../Hook/UseAxiosSecure';
+import useAxiosSecure from '../Hook/useAxiosSecure';
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
