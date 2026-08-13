@@ -13,7 +13,7 @@ This project was developed as part of a full-stack development course assignment
 
 ## 🚀 Live URL
 
-🔗 [Visit AtlasWay Live](https://atlasway-client.web.app/)  
+🔗 [Visit AtlasWay Live](https://atlas-way-client.vercel.app/)  
 
 
 ---
