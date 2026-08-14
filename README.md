@@ -53,7 +53,7 @@ This project was developed as part of a full-stack development course assignment
 ### Backend
 - **Node.js**
 - **Express.js**
-- **MongoDB (Atlas)**
+- **NeonDB**
 
 ---
 
@@ -71,7 +71,7 @@ This project was developed as part of a full-stack development course assignment
 - `express` – Backend framework
 - `cors` – Enable CORS
 - `dotenv` – Environment variable manager
-- `mongodb` – Database access (MongoDB native driver)
+- `neondb` – Database access (MongoDB native driver)
 
 
 
