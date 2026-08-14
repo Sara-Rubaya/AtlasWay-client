@@ -71,7 +71,7 @@ This project was developed as part of a full-stack development course assignment
 - `express` – Backend framework
 - `cors` – Enable CORS
 - `dotenv` – Environment variable manager
-- `neondb` – Database access (MongoDB native driver)
+- `neondb` – Database access 
 
 
 
